@@ -62,6 +62,7 @@
             <li><strong>Facilidade:</strong> Fórmulas automáticas que calculam o custo total e tempo estimado.</li>
         </ul>
         <p>Após ler essas informações, clique no botão abaixo para baixar a planilha:</p>
+
         <a href="Cadastros_Orcamentos_Precificacao_3D.xlsm" 
            download 
            class="btn-download" 
@@ -73,21 +74,28 @@
     </main>
 
     <script>
-        // Atualiza o contador ao carregar a página
+        // Mostrar valor atual do contador global
         fetch('https://api.countapi.xyz/get/mardsorf/planilha3d')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('contador').textContent = `Downloads: ${data.value}`;
+            })
+            .catch(() => {
+                document.getElementById('contador').textContent = 'Downloads: erro ao carregar';
             });
 
-        // Soma +1 no contador ao clicar no botão
+        // Somar +1 no contador quando clicar no botão
         function contarDownload() {
             fetch('https://api.countapi.xyz/update/mardsorf/planilha3d/?amount=1')
                 .then(res => res.json())
                 .then(data => {
                     document.getElementById('contador').textContent = `Downloads: ${data.value}`;
+                })
+                .catch(() => {
+                    alert("Erro ao registrar o download.");
                 });
         }
     </script>
 </body>
 </html>
+
