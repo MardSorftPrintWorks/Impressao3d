@@ -43,6 +43,11 @@
         .btn-download:hover {
             background-color: #2ba47a;
         }
+        #contador {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #3ddc97;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +62,27 @@
             <li><strong>Facilidade:</strong> Fórmulas automáticas que calculam o custo total e tempo estimado.</li>
         </ul>
         <p>Após ler essas informações, clique no botão abaixo para baixar a planilha:</p>
-        <a href="Cadastros_Orcamentos_Precificacao_3D.xlsm" download class="btn-download">📥 Baixar Planilha</a>
+        <a href="Cadastros_Orcamentos_Precificacao_3D.xlsm" download class="btn-download" id="btnDownload">📥 Baixar Planilha</a>
+        
+        <div id="contador">Downloads: 0</div>
 
         <p><a href="index.html">← Voltar para a página principal</a></p>
     </main>
+
+    <script>
+        const btn = document.getElementById('btnDownload');
+        const contadorEl = document.getElementById('contador');
+
+        // Pega o valor salvo ou 0 se não existir
+        let contador = localStorage.getItem('downloadCount');
+        contador = contador ? parseInt(contador) : 0;
+        contadorEl.textContent = `Downloads: ${contador}`;
+
+        btn.addEventListener('click', () => {
+            contador++;
+            localStorage.setItem('downloadCount', contador);
+            contadorEl.textContent = `Downloads: ${contador}`;
+        });
+    </script>
 </body>
 </html>
