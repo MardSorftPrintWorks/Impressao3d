@@ -43,11 +43,6 @@
         .btn-download:hover {
             background-color: #2ba47a;
         }
-        #contador {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #3ddc97;
-        }
     </style>
 </head>
 <body>
@@ -63,39 +58,9 @@
         </ul>
         <p>Após ler essas informações, clique no botão abaixo para baixar a planilha:</p>
 
-        <a href="Cadastros_Orcamentos_Precificacao_3D.xlsm" 
-           download 
-           class="btn-download" 
-           onclick="contarDownload()">📥 Baixar Planilha</a>
-        
-        <div id="contador">Downloads: carregando...</div>
+        <a href="Cadastros_Orcamentos_Precificacao_3D.xlsm" download class="btn-download">📥 Baixar Planilha</a>
 
         <p><a href="index.html">← Voltar para a página principal</a></p>
     </main>
-
-    <script>
-        // Mostrar valor atual do contador global
-        fetch('https://api.countapi.xyz/get/mardsorf/planilha3d')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('contador').textContent = `Downloads: ${data.value}`;
-            })
-            .catch(() => {
-                document.getElementById('contador').textContent = 'Downloads: erro ao carregar';
-            });
-
-        // Somar +1 no contador quando clicar no botão
-        function contarDownload() {
-            fetch('https://api.countapi.xyz/update/mardsorf/planilha3d/?amount=1')
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById('contador').textContent = `Downloads: ${data.value}`;
-                })
-                .catch(() => {
-                    alert("Erro ao registrar o download.");
-                });
-        }
-    </script>
 </body>
 </html>
-
